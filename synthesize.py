@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 # /usr/bin/python2
-'''
-By kyubyong park. kbpark.linguist@gmail.com.
-https://www.github.com/kyubyong/dc_tts
-'''
 
 from __future__ import print_function
 
@@ -54,6 +50,7 @@ def synthesize():
             prev_max_attentions = _max_attentions[:, j]
 
         # Get magnitude
+        print('Running Session')
         Z = sess.run(g.Z, {g.Y: Y})
 
         # Generate wav files

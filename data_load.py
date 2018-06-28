@@ -30,7 +30,7 @@ def text_normalize(text):
     text = re.sub("[ ]+", " ", text)
     return text
 
-def load_data(mode="train"):
+def load_data(mode="train", text=""):
     '''Loads data
       Args:
           mode: "train" or "synthesize".
@@ -75,8 +75,18 @@ def load_data(mode="train"):
                 texts.append(np.array(text, np.int32).tostring())
 
         return fpaths, text_lengths, texts
+    elif mode == 'synthesize_one':
+        if len(text) == 0:
+            raise ValueError('Text must be defined for synthesize_one')
+        sent = text_normalize(text).strip() + ".E"
+        print(sent)
+        sents = [sent]
+        texts = np.zeros((len(sents), hp.max_N), np.int32)
+        for i, sent in enumerate(sents):
+            texts[i, :len(sent)] = [char2idx[char] for char in sent]
+        return texts
 
-    else: # synthesize on unseen test text.
+    elif mode == 'synthesize': # synthesize on unseen test text.
         # Parse
         lines = codecs.open(hp.test_data, 'r', 'utf-8').readlines()[1:]
         sents = [text_normalize(line.split(" ", 1)[-1]).strip() + "E" for line in lines] # text normalization, E: EOS

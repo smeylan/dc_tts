@@ -32,7 +32,8 @@ class Hyperparams:
     attention_win_size = 3
 
     # data
-    data = "/data/private/voice/LJSpeech-1.0"
+    #data = "/data/private/voice/LJSpeech-1.0"
+    data = "/home/stephan/python/dc_tts/data/LJ01"
     # data = "/data/private/voice/kate"
     test_data = 'harvard_sentences.txt'
     vocab = "PE abcdefghijklmnopqrstuvwxyz'.?" # P: Padding, E: EOS.
@@ -41,7 +42,8 @@ class Hyperparams:
 
     # training scheme
     lr = 0.001 # Initial learning rate.
-    logdir = "logdir/LJ01"
+    #logdir = "logdir/LJ01"
+    logdir = "/home/stephan/python/dc_tts/data/LJ01"
     sampledir = 'samples'
     B = 32 # batch size
     num_iterations = 2000000
